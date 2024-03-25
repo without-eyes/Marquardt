@@ -55,13 +55,13 @@ vector<double> marquardt(vector<double> x0, double epsilon) {
         new_x[0] = x[0] + delta_x[0];
         new_x[1] = x[1] + delta_x[1];
 
-        cout << "Iteration №" << iter << endl <<
-             ":x" << iter << " = [" << x[0] << ", " << x[1] << "]^T" << endl <<
-             "a" << iter << " = " << lambda << endl <<
+        cout << "Iteration №" << iter << ":" << endl <<
+             "x" << iter-1 << " = [" << x[0] << ", " << x[1] << "]^T" << endl <<
+             "a" << iter-1 << " = " << lambda << endl <<
              "delf" " = [" << grad[0] << ", " << grad[1] << "]" << endl <<
              "||delf||" " = " << sqrt(grad[0]*grad[0] + grad[1]*grad[1]) << endl <<
-             "x" << iter+1 << " = [" << new_x[0] << ", " << new_x[1] << "]" << endl <<
-             "f" << iter+1 << " = " << f(x) << endl;
+             "x" << iter << " = [" << new_x[0] << ", " << new_x[1] << "]" << endl <<
+             "f" << iter << " = " << f(new_x) << endl;
 
         if (f(new_x) < f(x)) {
             lambda /= 2;
@@ -70,7 +70,7 @@ vector<double> marquardt(vector<double> x0, double epsilon) {
         } else {
             lambda *= 2;
         }
-        cout << "f" << iter+1 << "< f" << iter << " -> " << "c" << iter << " = " << lambda << endl << endl;
+        cout << "f" << iter << " < f" << iter-1 << " -> " << "c" << iter << " = " << lambda << endl << endl;
     }
 
     return x;
