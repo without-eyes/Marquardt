@@ -37,7 +37,7 @@ vector<double> marquardt(vector<double> x0, double epsilon) {
 
     cout << "Iteration №" << iter
          << ":\nx" << iter << " = [" << fixed << setprecision(4) << x[0] << ", " << x[1] << "]^T\n" <<
-         "a" << iter << " = " << lambda <<
+         "a" << iter << " = " << lambda << endl <<
          "f(x) = " << f(x) <<
          endl << endl;
 
@@ -66,10 +66,10 @@ vector<double> marquardt(vector<double> x0, double epsilon) {
         if (f(new_x) < f(x)) {
             lambda /= 2;
             x = new_x;
-            grad = gradient(x);
         } else {
             lambda *= 2;
         }
+        grad = gradient(x);
         cout << "f" << iter << " < f" << iter-1 << " -> " << "c" << iter << " = " << lambda << endl << endl;
     }
 
